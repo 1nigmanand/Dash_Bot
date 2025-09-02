@@ -30,7 +30,8 @@ function App() {
   const [settings, setSettings] = useState<ChatSettings>({
     temperature: 0.7,
     maxTokens: 500,
-    model: 'deepseek-r1:8b'
+    model: 'deepseek-r1:8b',
+    apiKey: process.env.REACT_APP_API_KEY || ''
   });
   const [apiResults, setApiResults] = useState<{
     title: string;
@@ -110,7 +111,7 @@ function App() {
   const checkConnection = async () => {
     setConnectionStatus({ connected: false });
     try {
-      await deepSeekAPI.checkHealth();
+      await deepSeekAPI.checkHealth(settings.apiKey);
       setConnectionStatus({ connected: true });
     } catch (error) {
       setConnectionStatus({ 
@@ -370,7 +371,7 @@ function App() {
 
   const testHealth = async () => {
     try {
-      const result = await deepSeekAPI.checkHealth();
+      const result = await deepSeekAPI.checkHealth(settings.apiKey);
       showApiResults('Health Check', result);
     } catch (error) {
       showApiResults('Health Check Error', { 
@@ -381,7 +382,7 @@ function App() {
 
   const testModels = async () => {
     try {
-      const result = await deepSeekAPI.getModels();
+      const result = await deepSeekAPI.getModels(settings.apiKey);
       showApiResults('Models List', result);
     } catch (error) {
       showApiResults('Models Error', { 

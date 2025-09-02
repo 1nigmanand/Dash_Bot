@@ -1,53 +1,144 @@
-# DeepSeek-R1:8b API Test Interface
+# 🚀 Dash_Bot - LocalLLM Chat Interface
 
-A comprehensive web-based testing interface for the DeepSeek-R1:8b API hosted at `llm.ndfreetech.me`.
+> **Modern ChatGPT-like interface for DeepSeek-R1:8b LocalLLM API**
 
-## 🚀 Features
+## Features
 
-### 💬 Interactive Chat Interface
-- Real-time chat with the DeepSeek-R1:8b model
-- Configurable temperature and token limits
-- Message history with export functionality
-- Auto-resizing input field
-- Responsive design for all devices
+- 🤖 **ChatGPT-like Interface** - Clean, modern chat experience
+- 💾 **Auto-save Chats** - Automatic chat persistence with IndexedDB
+- 📚 **Chat History** - Time-based organization (Today, Yesterday, etc.)
+- 🔐 **API Key Support** - Secure authentication with LocalLLM server
+- 📱 **Responsive Design** - Works on all devices
+- 🔧 **API Testing Tools** - Built-in testing for all endpoints
 
-### 🧪 API Testing Tools
-- **Health Check**: Test `/health` endpoint
-- **Models List**: Test `/v1/models` endpoint  
-- **Text Completion**: Test `/v1/completions` endpoint
-- **Custom Requests**: Send custom GET/POST requests to any endpoint
+## Quick Start
 
-### ⚙️ Configuration Panel
-- Adjustable temperature (0.0 - 2.0)
-- Configurable max tokens (1 - 2048)
-- Model selection
-- Real-time connection status
+### Prerequisites
+- LocalLLM server running at `http://localhost:8000`
+- Valid API key from your LocalLLM dashboard
 
-### 🎨 Modern UI/UX
-- Glassmorphism design with blur effects
-- Gradient backgrounds and smooth animations
-- Mobile-responsive layout
-- Dark/light theme compatible
+### Installation
 
-## 📁 Files
+```bash
+git clone https://github.com/1nigmanand/Dash_Bot.git
+cd Dash_Bot
+npm install
+```
 
-- `index.html` - Main HTML structure
-- `styles.css` - Complete CSS styling with animations
-- `script.js` - JavaScript functionality and API integration
+### Configuration
 
-## 🛠️ Setup
+1. Copy the environment template:
+```bash
+cp .env.example .env
+```
 
-1. **Clone or download the files**:
-   ```bash
-   git clone <repository> # or download files
-   cd deepseek-api-tester
-   ```
+2. Edit `.env` with your settings:
+```env
+REACT_APP_API_BASE_URL=http://localhost:8000
+REACT_APP_API_KEY=your_api_key_here
+```
 
-2. **Serve the files**:
-   
-   **Option 1: Python HTTP Server**
-   ```bash
-   python3 -m http.server 8080
+3. Get your API key from: `http://localhost:8000/dashboard`
+
+### Run the Application
+
+```bash
+npm start
+```
+
+Visit `http://localhost:3000` to use the chat interface.
+
+## API Integration
+
+### Supported Endpoints
+
+- ✅ `GET /health` - Health check
+- ✅ `POST /v1/chat/completions` - Chat completions
+- ✅ `POST /v1/completions` - Text completions  
+- ✅ `GET /v1/models` - List available models
+
+### Authentication
+
+All API requests include authentication headers:
+
+```javascript
+{
+  "Authorization": "Bearer YOUR_API_KEY",
+  "Content-Type": "application/json"
+}
+```
+
+## Usage
+
+### Chat Interface
+1. Enter your API key in Settings
+2. Start typing to begin a new conversation
+3. Chats auto-save with intelligent titles
+4. Browse history in the sidebar
+
+### API Testing
+- Use the built-in API testing tools in the sidebar
+- Test health, models, and completions endpoints
+- View formatted responses
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── MessageBubble.tsx     # Chat message display
+│   ├── Sidebar.tsx           # Navigation & settings
+│   └── TypingIndicator.tsx   # Loading animation
+├── utils/
+│   ├── api.ts                # LocalLLM API integration
+│   ├── chatStorage.ts        # IndexedDB chat persistence
+│   └── messageUtils.ts       # Chat utilities
+├── types/
+│   └── index.ts              # TypeScript definitions
+└── App.tsx                   # Main application
+```
+
+## Development
+
+### Environment Variables
+
+- `REACT_APP_API_BASE_URL`: LocalLLM server URL (default: http://localhost:8000)
+- `REACT_APP_API_KEY`: Your API key (can be set in UI)
+
+### Building for Production
+
+```bash
+npm run build
+```
+
+## LocalLLM Server Setup
+
+Make sure your LocalLLM server supports:
+
+1. **Health Check**: `GET /health`
+2. **Chat API**: `POST /v1/chat/completions` 
+3. **Completions**: `POST /v1/completions`
+4. **Models**: `GET /v1/models`
+
+All endpoints require Bearer token authentication.
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+**🚀 Simple. Fast. Reliable. 🤖**
+
+> Need help? Check the built-in API testing tools or visit your LocalLLM dashboard.
    ```
    
    **Option 2: Node.js HTTP Server**

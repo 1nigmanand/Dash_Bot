@@ -9,6 +9,7 @@ export interface ChatSettings {
   temperature: number;
   maxTokens: number;
   model: string;
+  apiKey?: string;
 }
 
 export interface APIResponse {

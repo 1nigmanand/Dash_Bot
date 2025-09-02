@@ -472,6 +472,25 @@ export const Sidebar: React.FC<SidebarProps> = ({
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
+                    API Key
+                  </label>
+                  <input
+                    type="password"
+                    placeholder="Enter your API key"
+                    value={settings.apiKey || ''}
+                    onChange={(e) => onSettingsChange({
+                      ...settings,
+                      apiKey: e.target.value
+                    })}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all"
+                  />
+                  <p className="text-xs text-gray-500 mt-1">
+                    Get your key from: <span className="font-mono">http://localhost:8000/dashboard</span>
+                  </p>
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
                     Temperature: <span className="text-primary-600 font-semibold">{settings.temperature}</span>
                   </label>
                   <input
